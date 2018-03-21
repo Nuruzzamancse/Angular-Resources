@@ -1,0 +1,123 @@
+<h2 class="text-success">Welcome Mr. {{name}}</h2>
+<p class="text-success">  {{greetUser()}}
+</p>
+<br>
+
+<h2 [class]="successClass">Hello Mr.Khan</h2>
+<h2 [class.text-danger]="isError">Hello Mr.Khan</h2>
+
+<!--class binding-->
+<h2 [ngClass]="message">Hello Mr.Khan</h2>
+
+<!--Style Binding-->
+<h2 [style.color]="'orange'">Hello Mr.Khan</h2>
+<h2 [style.color]="highlightColor">Hello Mr.Khan</h2>
+<h2 [style.color]="isError? 'red':'green'">Hello Mr.Khan</h2>
+<h2 [ngStyle]="titleStyle">Hello Mr.Khan</h2>
+<!--Event Binding-->
+<button (click)="onClick($event)">Greet</button>
+<button (click)="greetings = 'No way man!'">Greet</button>
+
+<!--Template reference vaiable-->
+<input #myId type="text">
+
+<button (click)="logfunction(myId)">Log</button>
+
+<!--Two way data binding-->
+
+<input [(ngModel)] = 'name2' type="text">
+
+{{name2}}
+
+
+ <!--Structural directive-->
+
+<h3 *ngIf="true"> Structural directive test</h3>
+<h3 *ngIf="displayName; else elsBlock"> Displaying Name</h3>
+
+<ng-template #elsBlock>
+  <h2>Name is hidden</h2>
+</ng-template>
+<button (click)="toggleDisplay()">Toggle</button>
+
+<div *ngIf="displayName; then thenBlock; else elseBlock"></div>
+  <ng-template #thenBlock>
+      <h3>Then block</h3>
+  </ng-template>
+
+  <ng-template #elseBlock>
+    <h4>Else block</h4>
+  </ng-template>
+
+ <!--switch directive-->
+
+<div [ngSwitch]="color">
+  <div *ngSwitchCase="'red'">You picke red color</div>
+  <div *ngSwitchCase="'blue'">You picke green color</div>
+  <div *ngSwitchCase="'yellow'">You picke blue color</div>
+
+  <div *ngSwitchDefault="">Pick agian</div>
+</div>
+
+<br>
+
+<!--for directive-->
+
+<div *ngFor="let name of names">
+  {{name}} <br>
+</div>
+
+ <!--taking index-->
+
+<div *ngFor="let name of names; index as i">
+ {{i}} {{name}} <br>
+</div>
+
+<!--checking last or firs-->
+
+<div *ngFor="let name of names; first as f">
+  {{f}} {{name}} <br>
+</div>
+
+<br><br>
+ <!--checking odd or even-->
+
+<div *ngFor="let name of names; odd as o">
+  {{o}} {{name}} <br>
+</div>
+
+
+<h2> {{greetings}} </h2>
+
+
+<h2>From Parent data 2 . {{parentData}} </h2>
+
+<br><br>
+
+ <!--pipe case-->
+
+<h2>{{5.678 | number: '1.2-3'}}</h2>
+<h2>{{5.678 | number: '1.4-5'}}</h2>
+<h2>{{5.678 | number: '3.1-2'}}</h2>
+
+<h2>{{.25 | percent }}</h2>
+<h2>{{.25 | currency : 'GBP' }}</h2>
+<h2>{{.25 | currency : 'GBP' : 'code' }}</h2>
+
+
+<h2>From Parent data . {{ pname | lowercase}} </h2>
+<h2>From Parent data . {{ pname | uppercase}} </h2>
+<h2>From Parent data . {{ pname | titlecase}} </h2>
+<h2>From Parent data . {{ pname | slice:3}} </h2>
+<h2>From Parent data . {{ pname | slice:3:5}} </h2>
+
+<h3> {{ person | json}}</h3>
+
+<button (click)="fireEvent()">Send Event</button>
+
+
+
+
+<input [id]="myId" type="text" value="Vishwas">
+<input [disabled]="isDisabled" [id]="myId" type="text" value="Vishwas">
+<input bind-disabled="isDisabled" [id]="myId" type="text" value="Vishwas">
